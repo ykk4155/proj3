@@ -15,6 +15,9 @@ background-color: #b39eb5;
   width: 90vw;
   box-shadow: -1px 4px 20px -6px rgba(0,0,0,0.75);
 }
+.login__container{
+  justify-content: center;
+}
 
 .login__container > img{
     object-fit: contain;
@@ -22,7 +25,7 @@ background-color: #b39eb5;
     margin-bottom: 40px;
 }
 
-.login__container > .MuiButtonBase-root {
+.MuiButton-label {
     margin-top: 50px;
     text-transform: inherit !important;
     background-color: #0a8d48 !important;
@@ -30,8 +33,12 @@ background-color: #b39eb5;
     font-family: 'BioRhyme', serif;
     justify-content: center;
     align-items: center;
+    padding:.75em;
 }
 .login__text {
   font-family: 'BioRhyme', serif;
   text-align: center;
+}
+.login__button {
+  align-self: center;
 }

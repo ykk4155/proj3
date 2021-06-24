@@ -21,11 +21,11 @@ loginHandler = () => {}
             <div className="login__container">
                 <img src="https://previews.123rf.com/images/ekaterinachvileva/ekaterinachvileva1903/ekaterinachvileva190300125/124746692-three-friends-talking-illustration-with-cute-marshmallow-and-speech-bubbles-cartoon-minimalism.jpg" alt=""/>
                 <div className="login__text">
-                    <h1>Chitter</h1>
-                </div>
+                    <h1>Chitter</h1>  
                 <Button onClick={signIn}>
                     Sign in with Google
-                </Button>
+                    </Button>
+                </div>
             </div>
         </div>
     )
