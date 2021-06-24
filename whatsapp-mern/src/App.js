@@ -13,7 +13,7 @@ import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 function App() {
 
   const [messages, setMessages] = useState([]);
-  const [user] = useState(null);
+  const [logIn,setlogin] = useState(false);
 
   useEffect(() => {
     axios.get('/messages/sync')
@@ -45,8 +45,8 @@ function App() {
 
   return (
     <div className="app">
-      {!user ? (
-        <Login />
+      {!logIn ? (
+        <Login loginHandler={ (boolean)=> setlogin(boolean)}/>
       ) : (
         <div className="app__body">
           <Router>
