@@ -1,21 +1,25 @@
 /* eslint-disable no-undef */
-import React, { useEffect , useState } from "react";
+import React from "react";
 import './App.css';
 import Sidebar from "./Sidebar"
 import Chat from "./Chat"
 import Pusher from "pusher-js";
 import axios from "./axios";
+import Login from "./Login";
+import { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+
 
 function App() {
 
   const [messages, setMessages] = useState([]);
-
+  const [user] = useState(null);
 
   useEffect(() => {
     axios.get('/messages/sync')
       .then(response => {
         setMessages(response.data)
-    })
+      })
   }, [])
 
 
@@ -27,12 +31,12 @@ function App() {
     const channel = pusher.subscribe("messages");
     channel.bind("inserted", (newMessage) => {
       // alert(JSON.stringify(newMessage));
-      setMessages([...messages,newMessage])
+      setMessages([...messages, newMessage])
     });
 
-    return() => {
-    channel.unbind_all();
-    channel.unsubscribe();
+    return () => {
+      channel.unbind_all();
+      channel.unsubscribe();
     }
     
   }, [messages]);
@@ -41,12 +45,22 @@ function App() {
 
   return (
     <div className="app">
-      <div className="app__body">
-      <Sidebar />
-        <Chat messages={ messages}/>
-      </div>
+      {!user ? (
+        <Login />
+      ) : (
+        <div className="app__body">
+          <Router>
+              <Sidebar />
+              <Switch>
+                <Route path="/">
+                  <Chat messages={messages}/>
+              </Route>
+              </Switch>
+          </Router>
+        </div>
+      )}
+      
     </div>
   );
 }
-
 export default App;
